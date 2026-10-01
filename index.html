@@ -403,7 +403,7 @@
     </div>
     <div class="stat-card">
       <div class="stat-label">Audits with Issues</div>
-      <div class="stat-value warn">3</div>
+      <div class="stat-value warn">2</div>
       <div class="stat-sub">of 5 reviewed</div>
     </div>
     <div class="stat-card">
@@ -553,7 +553,7 @@
       </div>
     </div>
 
-    <!-- Audit 4: Ryan A - Issue flagged but checklist all green -->
+    <!-- Audit 4: Ryan A - Auto-cleared by failsafe (flagged but no documented issues) -->
     <div class="card" onclick="toggleCard(this)">
       <div class="card-top">
         <div class="driver-row">
@@ -565,15 +565,16 @@
         </div>
         <div class="card-badges">
           <span class="badge type">Water</span>
-          <span class="badge warn">⚠ Flagged</span>
+          <span class="badge pass">✓ All Clear</span>
           <span class="chevron">▼</span>
         </div>
       </div>
       <div class="card-detail">
         <div class="detail-grid">
-          <div class="detail-item"><div class="detail-label">Date</div><div class="detail-value">9/18/2026</div></div>
+          <div class="detail-item"><div class="detail-label">Date</div><div class="detail-value">8/27/2026</div></div>
           <div class="detail-item"><div class="detail-label">Completed By</div><div class="detail-value">Mitch R</div></div>
-          <div class="detail-item"><div class="detail-label">Equipment Issues</div><div class="detail-value">Flagged — no details noted</div></div>
+          <div class="detail-item"><div class="detail-label">Equipment Issues</div><div class="detail-value">None</div></div>
+          <div class="detail-item"><div class="detail-label">Driver Concerns</div><div class="detail-value">None reported</div></div>
         </div>
         <div class="checklist">
           <div class="check-item"><span class="dot g"></span>Outside vehicle during load/unload</div>
@@ -590,6 +591,10 @@
         <div class="notes-block">
           <div class="notes-title">Field Notes</div>
           <div class="notes-text">Gave driver a cold drink and visited about distracted driving.</div>
+        </div>
+        <div class="notes-block" style="margin-top:8px;background:rgba(79,142,247,0.06);border-radius:8px;padding:8px 12px;">
+          <div class="notes-title" style="color:#4f8ef7;">&#9432; Failsafe Applied</div>
+          <div class="notes-text" style="font-size:11px;">Issue was flagged but no specific details, checklist items, or "No" answers were documented. Automatically marked All Clear. Please verify with the inspector.</div>
         </div>
       </div>
     </div>
@@ -835,5 +840,3 @@
 
 </body>
 </html>
-<!DOCTYPE html>
-<html>test</html>
