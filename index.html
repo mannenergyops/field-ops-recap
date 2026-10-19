@@ -2,574 +2,142 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Field Ops Weekly Recap</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0f1117;
-    --surface: #181c27;
-    --surface2: #1f2537;
-    --border: #2a2f42;
-    --text: #e4e8f0;
-    --muted: #7a8099;
-    --accent: #4f8ef7;
-    --green: #34c77b;
-    --red: #f05252;
-    --amber: #f5a623;
-    --green-bg: rgba(52,199,123,0.10);
-    --red-bg: rgba(240,82,82,0.10);
-    --amber-bg: rgba(245,166,35,0.10);
-    --font: 'Inter', sans-serif;
-    --mono: 'DM Mono', monospace;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: var(--font);
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding: env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px);
-  }
-
-  @media (prefers-color-scheme: light) {
-    :root {
-      --bg: #f0f2f7;
-      --surface: #ffffff;
-      --surface2: #eef0f6;
-      --border: #d5d9e8;
-      --text: #1a1d2e;
-      --muted: #6b7192;
-    }
-  }
-
-  .header {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 20px 24px 18px;
-  }
-
-  .header-inner {
-    max-width: 860px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .logo-block { display: flex; align-items: center; gap: 12px; }
-
-  .logo-icon {
-    width: 38px; height: 38px;
-    background: var(--accent);
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-    flex-shrink: 0;
-  }
-
-  .logo-text h1 {
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: -0.2px;
-    line-height: 1.2;
-  }
-
-  .logo-text p {
-    font-size: 12px;
-    color: var(--muted);
-    font-family: var(--mono);
-  }
-
-  .week-badge {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 5px 10px;
-  }
-
-  .main {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 28px 24px 60px;
-  }
-
-  /* Summary bar */
-  .summary-bar {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 12px;
-    margin-bottom: 36px;
-  }
-
-  .stat-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px 18px;
-  }
-
-  .stat-label {
-    font-size: 11px;
-    color: var(--muted);
-    font-family: var(--mono);
-    margin-bottom: 6px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .stat-value {
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 1;
-  }
-
-  .stat-value.good { color: var(--green); }
-  .stat-value.warn { color: var(--red); }
-  .stat-value.neutral { color: var(--accent); }
-
-  .stat-sub {
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 4px;
-  }
-
-  /* Section headers */
-  .section-head {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 16px;
-  }
-
-  .section-head h2 {
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: -0.2px;
-  }
-
-  .section-icon {
-    width: 28px; height: 28px;
-    border-radius: 7px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px;
-    flex-shrink: 0;
-  }
-
-  .section-icon.blue { background: rgba(79,142,247,0.15); }
-  .section-icon.teal { background: rgba(52,199,123,0.15); }
-
-  .count-pill {
-    font-size: 11px;
-    font-family: var(--mono);
-    color: var(--muted);
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 2px 9px;
-    margin-left: auto;
-  }
-
-  /* Entry cards */
-  .cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
-
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-  }
-
-  .card-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 16px 12px;
-    gap: 12px;
-    flex-wrap: wrap;
-    cursor: pointer;
-    user-select: none;
-  }
-
-  .card-top:hover { background: var(--surface2); transition: background 0.15s; }
-
-  .driver-row { display: flex; align-items: center; gap: 10px; }
-
-  .avatar {
-    width: 32px; height: 32px;
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 13px;
-    font-weight: 700;
-    flex-shrink: 0;
-    font-family: var(--mono);
-  }
-
-  .avatar.blue { background: rgba(79,142,247,0.18); color: var(--accent); }
-  .avatar.teal { background: rgba(52,199,123,0.18); color: var(--green); }
-
-  .driver-name {
-    font-size: 14px;
-    font-weight: 600;
-  }
-
-  .driver-meta {
-    font-size: 11px;
-    color: var(--muted);
-    font-family: var(--mono);
-    margin-top: 1px;
-  }
-
-  .card-badges { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
-
-  .badge {
-    font-size: 11px;
-    font-family: var(--mono);
-    border-radius: 6px;
-    padding: 3px 8px;
-    font-weight: 500;
-  }
-
-  .badge.pass { background: var(--green-bg); color: var(--green); }
-  .badge.fail { background: var(--red-bg); color: var(--red); }
-  .badge.warn { background: var(--amber-bg); color: var(--amber); }
-  .badge.type { background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
-
-  .chevron {
-    font-size: 10px;
-    color: var(--muted);
-    transition: transform 0.2s;
-    margin-left: 4px;
-  }
-
-  .card.open .chevron { transform: rotate(180deg); }
-
-  .card-detail {
-    display: none;
-    padding: 0 16px 16px;
-    border-top: 1px solid var(--border);
-  }
-
-  .card.open .card-detail { display: block; }
-
-  .detail-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 10px 20px;
-    padding-top: 14px;
-  }
-
-  .detail-item {}
-
-  .detail-label {
-    font-size: 10px;
-    font-family: var(--mono);
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-    margin-bottom: 3px;
-  }
-
-  .detail-value {
-    font-size: 13px;
-    color: var(--text);
-    line-height: 1.4;
-  }
-
-  .issue-block {
-    margin-top: 14px;
-    background: var(--red-bg);
-    border: 1px solid rgba(240,82,82,0.2);
-    border-radius: 8px;
-    padding: 10px 12px;
-  }
-
-  .issue-block .issue-title {
-    font-size: 10px;
-    font-family: var(--mono);
-    color: var(--red);
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-    margin-bottom: 5px;
-  }
-
-  .issue-block .issue-text {
-    font-size: 13px;
-    line-height: 1.5;
-    color: var(--text);
-  }
-
-  .notes-block {
-    margin-top: 10px;
-    background: var(--surface2);
-    border-radius: 8px;
-    padding: 10px 12px;
-  }
-
-  .notes-block .notes-title {
-    font-size: 10px;
-    font-family: var(--mono);
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-    margin-bottom: 5px;
-  }
-
-  .notes-block .notes-text {
-    font-size: 13px;
-    line-height: 1.5;
-    color: var(--muted);
-  }
-
-  .checklist {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    padding-top: 14px;
-  }
-
-  .check-item {
-    display: flex; align-items: center; gap: 5px;
-    font-size: 11px;
-    color: var(--muted);
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 4px 8px;
-  }
-
-  .check-item .dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .dot.g { background: var(--green); }
-  .dot.r { background: var(--red); }
-  .dot.a { background: var(--amber); }
-
-  .divider {
-    height: 1px;
-    background: var(--border);
-    margin: 0 0 36px;
-  }
-
-  .footer {
-    text-align: center;
-    font-size: 11px;
-    font-family: var(--mono);
-    color: var(--muted);
-    margin-top: 20px;
-  }
-
-  @media (max-width: 560px) {
-    .main { padding: 20px 16px 48px; }
-    .header { padding: 16px; }
-    .stat-card { padding: 14px; }
-    .summary-bar { grid-template-columns: 1fr 1fr; }
-  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f2f5;color:#1a1a2e;min-height:100vh}
+  .header{background:linear-gradient(135deg,#1f6f99 0%,#0d4f73 100%);padding:28px 32px;display:flex;align-items:center;justify-content:space-between}
+  .header-left h1{font-size:22px;font-weight:700;color:#fff;letter-spacing:.3px}
+  .header-left p{font-size:13px;color:rgba(255,255,255,.75);margin-top:3px}
+  .week-badge{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);color:#fff;font-size:12px;font-weight:600;padding:5px 14px;border-radius:20px}
+  .container{max-width:860px;margin:0 auto;padding:28px 20px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+  .stat{background:#fff;border-radius:10px;padding:18px 20px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+  .stat-label{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px}
+  .stat-value{font-size:32px;font-weight:700;line-height:1}
+  .stat-sub{font-size:11px;color:#aaa;margin-top:4px}
+  .stat-neutral .stat-value{color:#1a1a2e}
+  .stat-good .stat-value{color:#1a7a4a}
+  .stat-warn .stat-value{color:#c0392b}
+  .section{background:#fff;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,.08);margin-bottom:22px;overflow:hidden}
+  .section-header{background:#f7f9fc;border-bottom:1px solid #eaecf0;padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
+  .section-title{font-size:15px;font-weight:700;color:#1a1a2e;display:flex;align-items:center;gap:8px}
+  .section-count{font-size:12px;color:#888;background:#eaecf0;padding:3px 10px;border-radius:12px;font-weight:600}
+  .no-data{padding:28px;text-align:center;color:#aaa;font-size:14px}
+  .record{display:flex;align-items:flex-start;gap:14px;padding:14px 20px;border-bottom:1px solid #f0f2f5}
+  .record:last-child{border-bottom:none}
+  .avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0}
+  .av-blue{background:#1f6f99}
+  .av-red{background:#c0392b}
+  .av-green{background:#1a7a4a}
+  .record-body{flex:1;min-width:0}
+  .record-name{font-size:14px;font-weight:600;color:#1a1a2e}
+  .record-detail{font-size:12px;color:#888;margin-top:2px}
+  .record-meta{font-size:11px;color:#aaa;margin-top:4px}
+  .badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:3px 9px;border-radius:12px;margin-left:8px}
+  .badge-green{background:#e8f5ec;color:#1a7a4a}
+  .badge-red{background:#fdecea;color:#c0392b}
+  .notes-box{background:#fff8e1;border-left:3px solid #f0b429;padding:8px 12px;border-radius:0 6px 6px 0;margin-top:8px;font-size:12px;color:#555;line-height:1.5}
+  .footer{text-align:center;padding:20px;font-size:11px;color:#bbb}
+  @media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
-
-<header class="header">
-  <div class="header-inner">
-    <div class="logo-block">
-      <div class="logo-icon">&#128667;</div>
-      <div class="logo-text">
-        <h1>Mann Energy Field Ops</h1>
-        <p>Weekly Recap &middot; Driver Audits & Inspections</p>
-      </div>
-    </div>
-    <div class="week-badge">Week of 10/5/2026</div>
+<div class="header">
+  <div class="header-left">
+    <h1>&#128202; Mann Energy Field Ops</h1>
+    <p>Weekly Recap &middot; Driver Audits &amp; Inspections</p>
   </div>
-</header>
-
-<main class="main">
-
-  <!-- Summary Stats -->
-  <div class="summary-bar">
-    <div class="stat-card">
+  <div class="week-badge">Week of 10/12/2026</div>
+</div>
+<div class="container">
+  <div class="stats">
+    <div class="stat stat-neutral">
       <div class="stat-label">Audits</div>
-      <div class="stat-value neutral">2</div>
+      <div class="stat-value">0</div>
       <div class="stat-sub">This week</div>
     </div>
-    <div class="stat-card">
+    <div class="stat stat-good">
       <div class="stat-label">Audits with Issues</div>
-      <div class="stat-value good">0</div>
-      <div class="stat-sub">of 2 reviewed</div>
+      <div class="stat-value">0</div>
+      <div class="stat-sub">of 0 reviewed</div>
     </div>
-    <div class="stat-card">
+    <div class="stat stat-neutral">
       <div class="stat-label">Inspections</div>
-      <div class="stat-value neutral">1</div>
+      <div class="stat-value">4</div>
       <div class="stat-sub">This week</div>
     </div>
-    <div class="stat-card">
+    <div class="stat stat-warn">
       <div class="stat-label">Tickets / OOS</div>
-      <div class="stat-value warn">1</div>
-      <div class="stat-sub">of 1 inspected</div>
+      <div class="stat-value">2</div>
+      <div class="stat-sub">of 4 inspected</div>
     </div>
   </div>
 
-  <!-- Driver Audits -->
-  <div class="section-head">
-    <div class="section-icon blue">&#128203;</div>
-    <h2>Driver Audits</h2>
-    <span class="count-pill">2 entries</span>
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">&#128101; Driver Audits</div>
+      <div class="section-count">0 entries</div>
+    </div>
+    <div class="no-data">No driver audits recorded this week.</div>
   </div>
 
-  <div class="cards">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">&#128269; Vehicle Inspections</div>
+      <div class="section-count">4 entries</div>
+    </div>
 
-    <!-- Audit 1: Jay B - All Clear -->
-    <div class="card" onclick="toggleCard(this)">
-      <div class="card-top">
-        <div class="driver-row">
-          <div class="avatar blue">JB</div>
-          <div>
-            <div class="driver-name">Jay B.</div>
-            <div class="driver-meta">Whiting Rauser 11-29 HU &middot; Truck JB1 &middot; Trailer 1907</div>
-          </div>
+    <div class="record">
+      <div class="avatar av-red">RW</div>
+      <div class="record-body">
+        <div class="record-name">Randall W.
+          <span class="badge badge-red">&#9888; OOS</span>
         </div>
-        <div class="card-badges">
-          <span class="badge type">Water</span>
-          <span class="badge pass">&#10003; All Clear</span>
-          <span class="chevron">&#9660;</span>
-        </div>
-      </div>
-      <div class="card-detail">
-        <div class="detail-grid">
-          <div class="detail-item"><div class="detail-label">Date</div><div class="detail-value">10/7/2026</div></div>
-          <div class="detail-item"><div class="detail-label">Completed By</div><div class="detail-value">Mitch R.</div></div>
-          <div class="detail-item"><div class="detail-label">Equipment Issues</div><div class="detail-value">None</div></div>
-          <div class="detail-item"><div class="detail-label">Driver Concerns</div><div class="detail-value">None reported</div></div>
-        </div>
-        <div class="checklist">
-          <div class="check-item"><span class="dot g"></span>Outside vehicle during load/unload</div>
-          <div class="check-item"><span class="dot g"></span>Equipment grounded</div>
-          <div class="check-item"><span class="dot g"></span>PPE worn</div>
-          <div class="check-item"><span class="dot g"></span>Wheel chocks used</div>
-          <div class="check-item"><span class="dot g"></span>Lights clean &amp; working</div>
-          <div class="check-item"><span class="dot g"></span>Placards visible</div>
-          <div class="check-item"><span class="dot g"></span>Parked safely</div>
-          <div class="check-item"><span class="dot g"></span>Pre-trip performed</div>
-          <div class="check-item"><span class="dot g"></span>Cab clean</div>
-          <div class="check-item"><span class="dot g"></span>Hoses/fittings in order</div>
-        </div>
-        <div class="notes-block">
-          <div class="notes-title">Field Notes</div>
-          <div class="notes-text">Completed field level hazard assessment with driver. Asked to wait and complete the assessment before loading. Gave driver a cold drink.</div>
-        </div>
+        <div class="record-detail">Alexander LACT lot 13 &middot; Truck 253 &middot; Trailer 2010</div>
+        <div class="record-meta">10/18/2026 &middot; Inspected by Mitch R.</div>
+        <div class="notes-box">Lighting: No brake lights on trailer. Out of Service. Talked to driver about grounding while unloading; reminded driver to wear safety glasses on any location.</div>
       </div>
     </div>
 
-    <!-- Audit 2: Tyler R - All Clear -->
-    <div class="card" onclick="toggleCard(this)">
-      <div class="card-top">
-        <div class="driver-row">
-          <div class="avatar blue">TR</div>
-          <div>
-            <div class="driver-name">Tyler R</div>
-            <div class="driver-meta">Whiting Rauser 11-29HU &middot; Truck 975 &middot; Trailer 555</div>
-          </div>
+    <div class="record">
+      <div class="avatar av-red">DM</div>
+      <div class="record-body">
+        <div class="record-name">Don M.
+          <span class="badge badge-red">&#9888; OOS</span>
         </div>
-        <div class="card-badges">
-          <span class="badge type">Water</span>
-          <span class="badge pass">&#10003; All Clear</span>
-          <span class="chevron">&#9660;</span>
-        </div>
-      </div>
-      <div class="card-detail">
-        <div class="detail-grid">
-          <div class="detail-item"><div class="detail-label">Date</div><div class="detail-value">10/7/2026</div></div>
-          <div class="detail-item"><div class="detail-label">Completed By</div><div class="detail-value">Mitch R</div></div>
-          <div class="detail-item"><div class="detail-label">Equipment Issues</div><div class="detail-value">None</div></div>
-          <div class="detail-item"><div class="detail-label">Driver Concerns</div><div class="detail-value">None reported</div></div>
-        </div>
-        <div class="checklist">
-          <div class="check-item"><span class="dot g"></span>Outside vehicle during load/unload</div>
-          <div class="check-item"><span class="dot g"></span>Equipment grounded</div>
-          <div class="check-item"><span class="dot g"></span>PPE worn</div>
-          <div class="check-item"><span class="dot g"></span>Wheel chocks used</div>
-          <div class="check-item"><span class="dot g"></span>Lights clean &amp; working</div>
-          <div class="check-item"><span class="dot g"></span>Placards visible</div>
-          <div class="check-item"><span class="dot g"></span>Parked safely</div>
-          <div class="check-item"><span class="dot g"></span>Pre-trip performed</div>
-          <div class="check-item"><span class="dot g"></span>Cab clean</div>
-          <div class="check-item"><span class="dot g"></span>Hoses/fittings in order</div>
-        </div>
-        <div class="notes-block">
-          <div class="notes-title">Field Notes</div>
-          <div class="notes-text">Completed field level hazard assessment with driver, asked driver to stop loading. Gave driver a cold drink.</div>
-        </div>
+        <div class="record-detail">Alexander CPI &middot; Truck 944 &middot; Trailer 2015</div>
+        <div class="record-meta">10/16/2026 &middot; Inspected by Mitch R.</div>
+        <div class="notes-box">Lighting: RR tail light on truck not working, LR turn signal on trailer not working. OOS for turn signal, violation for taillight. Shop mechanic met driver on location to make repairs.</div>
       </div>
     </div>
 
-  </div><!-- /audit cards -->
+    <div class="record">
+      <div class="avatar av-green">LH</div>
+      <div class="record-body">
+        <div class="record-name">Lincoln H.
+          <span class="badge badge-green">&#10003; All Clear</span>
+        </div>
+        <div class="record-detail">East Fairview &middot; Truck 911 &middot; Trailer 2011</div>
+        <div class="record-meta">10/17/2026 &middot; Inspected by Mitch R.</div>
+      </div>
+    </div>
 
-  <div class="divider"></div>
+    <div class="record">
+      <div class="avatar av-green">JB</div>
+      <div class="record-body">
+        <div class="record-name">Jandre B.
+          <span class="badge badge-green">&#10003; All Clear</span>
+        </div>
+        <div class="record-detail">Fairview East &middot; Truck JDB01 &middot; Trailer 2000</div>
+        <div class="record-meta">10/17/2026 &middot; Inspected by Mitch R.</div>
+        <div class="notes-box">Driver had old hazmat registration; new one was under the old one.</div>
+      </div>
+    </div>
 
-  <!-- Vehicle Inspections -->
-  <div class="section-head">
-    <div class="section-icon teal">&#128269;</div>
-    <h2>Vehicle Inspections</h2>
-    <span class="count-pill">1 entry</span>
   </div>
-
-  <div class="cards">
-
-    <!-- Inspection 1: Darland G - Tire violation -->
-    <div class="card" onclick="toggleCard(this)">
-      <div class="card-top">
-        <div class="driver-row">
-          <div class="avatar teal">DG</div>
-          <div>
-            <div class="driver-name">Darland G</div>
-            <div class="driver-meta">Iron Oil Patten 2-27-22H &middot; Truck 252 &middot; Trailer 2005</div>
-          </div>
-        </div>
-        <div class="card-badges">
-          <span class="badge fail">&#9888; Violation Found</span>
-          <span class="chevron">&#9660;</span>
-        </div>
-      </div>
-      <div class="card-detail">
-        <div class="detail-grid">
-          <div class="detail-item"><div class="detail-label">Date</div><div class="detail-value">10/11/2026</div></div>
-          <div class="detail-item"><div class="detail-label">Inspected By</div><div class="detail-value">Mitch R</div></div>
-          <div class="detail-item"><div class="detail-label">Categories</div><div class="detail-value">Tires</div></div>
-          <div class="detail-item"><div class="detail-label">Violation Flag</div><div class="detail-value">Yes &#8212; Possible tire violation</div></div>
-        </div>
-        <div class="issue-block">
-          <div class="issue-title">Issues Found</div>
-          <div class="issue-text">
-            <strong>Tires:</strong> Axle 3 Right Outside tire right at 2/32. Axle 4 Right Inside tire right at 2/32.
-          </div>
-        </div>
-        <div class="notes-block">
-          <div class="notes-title">Action Taken</div>
-          <div class="notes-text">Possible violation for tires flagged. Driver notified and documentation completed.</div>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /inspection cards -->
-
-  <div class="footer">Generated from Driver Audit Master &middot; Mann Energy Services</div>
-
-</main>
-
-<script>
-  function toggleCard(card) {
-    card.classList.toggle('open');
-  }
-</script>
-
+</div>
+<div class="footer">Generated from Driver Audit Master &middot; Mann Energy Services</div>
 </body>
-</html>
+  </html>
