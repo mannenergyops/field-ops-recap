@@ -1,143 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Field Ops Weekly Recap</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mann Energy Field Ops &middot; Weekly Recap</title>
 <style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f2f5;color:#1a1a2e;min-height:100vh}
-  .header{background:linear-gradient(135deg,#1f6f99 0%,#0d4f73 100%);padding:28px 32px;display:flex;align-items:center;justify-content:space-between}
-  .header-left h1{font-size:22px;font-weight:700;color:#fff;letter-spacing:.3px}
-  .header-left p{font-size:13px;color:rgba(255,255,255,.75);margin-top:3px}
-  .week-badge{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);color:#fff;font-size:12px;font-weight:600;padding:5px 14px;border-radius:20px}
-  .container{max-width:860px;margin:0 auto;padding:28px 20px}
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
-  .stat{background:#fff;border-radius:10px;padding:18px 20px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
-  .stat-label{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px}
-  .stat-value{font-size:32px;font-weight:700;line-height:1}
-  .stat-sub{font-size:11px;color:#aaa;margin-top:4px}
-  .stat-neutral .stat-value{color:#1a1a2e}
-  .stat-good .stat-value{color:#1a7a4a}
-  .stat-warn .stat-value{color:#c0392b}
-  .section{background:#fff;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,.08);margin-bottom:22px;overflow:hidden}
-  .section-header{background:#f7f9fc;border-bottom:1px solid #eaecf0;padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
-  .section-title{font-size:15px;font-weight:700;color:#1a1a2e;display:flex;align-items:center;gap:8px}
-  .section-count{font-size:12px;color:#888;background:#eaecf0;padding:3px 10px;border-radius:12px;font-weight:600}
-  .no-data{padding:28px;text-align:center;color:#aaa;font-size:14px}
-  .record{display:flex;align-items:flex-start;gap:14px;padding:14px 20px;border-bottom:1px solid #f0f2f5}
-  .record:last-child{border-bottom:none}
-  .avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0}
-  .av-blue{background:#1f6f99}
-  .av-red{background:#c0392b}
-  .av-green{background:#1a7a4a}
-  .record-body{flex:1;min-width:0}
-  .record-name{font-size:14px;font-weight:600;color:#1a1a2e}
-  .record-detail{font-size:12px;color:#888;margin-top:2px}
-  .record-meta{font-size:11px;color:#aaa;margin-top:4px}
-  .badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:3px 9px;border-radius:12px;margin-left:8px}
-  .badge-green{background:#e8f5ec;color:#1a7a4a}
-  .badge-red{background:#fdecea;color:#c0392b}
-  .notes-box{background:#fff8e1;border-left:3px solid #f0b429;padding:8px 12px;border-radius:0 6px 6px 0;margin-top:8px;font-size:12px;color:#555;line-height:1.5}
-  .footer{text-align:center;padding:20px;font-size:11px;color:#bbb}
-  @media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}}
+*{bo-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f0f2f5;color:#222;min-height:100vh}
+.header{background:linear-gradient(135deg,#1f6f99 0%,#0d4f73 100%);color:#fff;padding:28px 32px 24px}
+.header h1{font-size:1.5rem;font-weight:700;letter-spacing:.5px}
+.header .sub{font-size:.95rem;opacity:.85;margin-top:4px}
+.week-badge{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);border-radius:20px;padding:4px 14px;font-size:.85rem;font-weight:600;margin-top:10px}
+.container{max-width:900px;margin:0 auto;padding:24px 16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:28px}
+.stat{background:#fff;border-radius:10px;padding:18px 20px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.stat .icon{font-size:1.4rem;margin-bottom:6px}
+.stat .num{font-size:2rem;font-weight:700;line-height:1}
+.stat .label{font-size:.78rem;color:#666;margin-top:4px;text-transform:uppercase;letter-spacing:.5px}
+.stat.warn .num{color:#c0392b}
+.section{background:#fff;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,.08);margin-bottom:22px;overflow:hidden}
+.section-header{background:#f8f9fa;border-bottom:1px solid #e5e7eb;padding:14px 20px;font-size:1rem;font-weight:600;color:#1f6f99}
+.card{padding:16px 20px;border-bottom:1px solid #f0f2f5}
+.card:last-child{border-bottom:none}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.driver-name{font-weight:600;font-size:1rem}
+.badge{display:inline-block;border-radius:12px;padding:3px 10px;font-size:.78rem;font-weight:600}
+.badge.ok{background:#e8f5ee;color:#1a7a4a}
+.badge.bad{background:#fdecea;color:#c0392b}
+.card-meta{font-size:.83rem;color:#555;margin-top:6px;display:flex;flex-wrap:wrap;gap:8px 18px}
+.card-meta span::before{content:''}
+.notes{font-size:.83rem;color:#444;margin-top:8px;background:#f8f9fa;border-radius:6px;padding:8px 10px;border-left:3px solid #d1d5db}
+.notes.warn{border-left-color:#c0392b;background:#fdf6f6}
+.empty{padding:20px;text-align:center;color:#888;font-size:.9rem}
+.footer{text-align:center;color:#999;font-size:.78rem;padding:20px;margin-top:8px}
 </style>
 </head>
 <body>
 <div class="header">
-  <div class="header-left">
-    <h1>&#128202; Mann Energy Field Ops</h1>
-    <p>Weekly Recap &middot; Driver Audits &amp; Inspections</p>
-  </div>
-  <div class="week-badge">Week of 10/12/2026</div>
+  <div class="sub">Mann Energy Field Ops</div>
+  <h1>&#128202; Weekly Recap &middot; Driver Audits &amp; Inspections</h1>
+  <div class="week-badge">Week of 10/19/2026</div>
 </div>
 <div class="container">
   <div class="stats">
-    <div class="stat stat-neutral">
-      <div class="stat-label">Audits</div>
-      <div class="stat-value">0</div>
-      <div class="stat-sub">This week</div>
+    <div class="stat">
+      <div class="icon">&#128101;</div>
+      <div class="num">3</div>
+      <div class="label">Driver Audits</div>
     </div>
-    <div class="stat stat-good">
-      <div class="stat-label">Audits with Issues</div>
-      <div class="stat-value">0</div>
-      <div class="stat-sub">of 0 reviewed</div>
+    <div class="stat">
+      <div class="icon">&#9888;</div>
+      <div class="num">0</div>
+      <div class="label">Audits w/ Issues</div>
     </div>
-    <div class="stat stat-neutral">
-      <div class="stat-label">Inspections</div>
-      <div class="stat-value">4</div>
-      <div class="stat-sub">This week</div>
+    <div class="stat">
+      <div class="icon">&#128269;</div>
+      <div class="num">1</div>
+      <div class="label">Inspections</div>
     </div>
-    <div class="stat stat-warn">
-      <div class="stat-label">Tickets / OOS</div>
-      <div class="stat-value">2</div>
-      <div class="stat-sub">of 4 inspected</div>
+    <div class="stat warn">
+      <div class="icon">&#9888;</div>
+      <div class="num">1</div>
+      <div class="label">Tickets / OOS</div>
+    </div>
+  </div>
+
+  <div clas="section">
+    <div class="section-header">&#128101; Driver Audits &mdash; Week of 10/19/2026</div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="driver-name">Randall Washington</div>
+        <span class="badge ok">&#10003; All Clear</span>
+      </div>
+      <div class="card-meta">
+        <span>Ride the Lightning</span>
+        <span>Truck 253 &middot; Trailer 2010</span>
+        <span>10/23/2026</span>
+        <span>Audited by Jared Rognlien</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="driver-name">Danny Nevarez</div>
+        <span class="badge ok">&#10003; All Clear</span>
+      </div>
+      <div class="card-meta">
+        <span>Ride the Lightning</span>
+        <span>Truck 99 &middot; Trailer 2006</span>
+        <span>10/23/2026</span>
+        <span>Audited by Jared Rognlien</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="driver-name">Jay Fiedor</div>
+        <span class="badge ok">&#10003; All Clear</span>
+      </div>
+      <div class="card-meta">
+        <span>Antelope 2-31-30</span>
+        <span>Truck 964 &middot; Trailer 2004</span>
+        <span>10/23/2026</span>
+        <span>Audited by Jared Rognlien</span>
+      </div>
     </div>
   </div>
 
   <div class="section">
-    <div class="section-header">
-      <div class="section-title">&#128101; Driver Audits</div>
-      <div class="section-count">0 entries</div>
+    <div class="section-header">&#128269; Vehicle Inspections &mdash; Week of 10/19/2026</div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="driver-name">Randall W &mdash; Truck 253 / Trailer 2010</div>
+        <span class="badge bad">&#9888; OOS</span>
+      </div>
+      <div class="card-meta">
+        <span>Alexander LACT lot 13</span>
+        <span>10/19/2026</span>
+        <span>Inspected by Mitch R.</span>
+        <span>Issue: Lighting</span>
+      </div>
+      <div class="notes warn">Out of Service &mdash; No brake lights on trailer. Talked to driver about grounding while unloading, also reminded driver to wear safety glasses when on any location.</div>
     </div>
-    <div class="no-data">No driver audits recorded this week.</div>
   </div>
 
-  <div class="section">
-    <div class="section-header">
-      <div class="section-title">&#128269; Vehicle Inspections</div>
-      <div class="section-count">4 entries</div>
-    </div>
-
-    <div class="record">
-      <div class="avatar av-red">RW</div>
-      <div class="record-body">
-        <div class="record-name">Randall W.
-          <span class="badge badge-red">&#9888; OOS</span>
-        </div>
-        <div class="record-detail">Alexander LACT lot 13 &middot; Truck 253 &middot; Trailer 2010</div>
-        <div class="record-meta">10/18/2026 &middot; Inspected by Mitch R.</div>
-        <div class="notes-box">Lighting: No brake lights on trailer. Out of Service. Talked to driver about grounding while unloading; reminded driver to wear safety glasses on any location.</div>
-      </div>
-    </div>
-
-    <div class="record">
-      <div class="avatar av-red">DM</div>
-      <div class="record-body">
-        <div class="record-name">Don M.
-          <span class="badge badge-red">&#9888; OOS</span>
-        </div>
-        <div class="record-detail">Alexander CPI &middot; Truck 944 &middot; Trailer 2015</div>
-        <div class="record-meta">10/16/2026 &middot; Inspected by Mitch R.</div>
-        <div class="notes-box">Lighting: RR tail light on truck not working, LR turn signal on trailer not working. OOS for turn signal, violation for taillight. Shop mechanic met driver on location to make repairs.</div>
-      </div>
-    </div>
-
-    <div class="record">
-      <div class="avatar av-green">LH</div>
-      <div class="record-body">
-        <div class="record-name">Lincoln H.
-          <span class="badge badge-green">&#10003; All Clear</span>
-        </div>
-        <div class="record-detail">East Fairview &middot; Truck 911 &middot; Trailer 2011</div>
-        <div class="record-meta">10/17/2026 &middot; Inspected by Mitch R.</div>
-      </div>
-    </div>
-
-    <div class="record">
-      <div class="avatar av-green">JB</div>
-      <div class="record-body">
-        <div class="record-name">Jandre B.
-          <span class="badge badge-green">&#10003; All Clear</span>
-        </div>
-        <div class="record-detail">Fairview East &middot; Truck JDB01 &middot; Trailer 2000</div>
-        <div class="record-meta">10/17/2026 &middot; Inspected by Mitch R.</div>
-        <div class="notes-box">Driver had old hazmat registration; new one was under the old one.</div>
-      </div>
-    </div>
-
-  </div>
+  <div class="footer">Generated from Driver Audit Master &middot; Mann Energy Services &middot; Week of 10/19/2026</div>
 </div>
-<div class="footer">Generated from Driver Audit Master &middot; Mann Energy Services</div>
 </body>
-  </html>
+</html>
